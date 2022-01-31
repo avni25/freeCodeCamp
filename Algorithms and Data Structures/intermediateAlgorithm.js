@@ -33,7 +33,8 @@ function destroyer(arr) {
     return arr2;
 }
   
-console.log(destroyer([3, 5, 1, 2, 2], 2, 3, 5));
+
+
 
 function destroyer2(arr, ...args){
     
