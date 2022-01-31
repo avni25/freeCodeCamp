@@ -195,29 +195,51 @@ let t = op.reduce((prev, current) => {return (prev+current.rating)},0);
 console.log(t);
 //-----------------------------------------------------
 
+//----------------------SORT---------------------------
 const globalArray = [1, 30, 4, 21, 100000];
 
 function nonMutatingSort(arr) {
-  // Only change code below this line
-
-  let a = [...arr];
-  
+  let a = [...arr];  
   console.log(a);
   return a.sort((a,b)=>{
       return a-b;
   });
-  // Only change code above this line
 }
 
 console.log(nonMutatingSort(globalArray));
 console.log(globalArray);
 
 
-function urlSlug(title) {
-  
- 
+function urlSlug(title) { 
   return  title.toLowerCase().trim().split(/\s+/).join("-");
-
 }
-// Only change code above this line
+
 console.log(urlSlug("   Winter Is  Coming"));
+
+//----------------------EVERY---------------------------
+/**
+ * The every method works with arrays to check if every element passes a particular test. It returns a Boolean value - true if all values meet the criteria, false if not
+ */
+let arr4 = [1, 2, 3, -4, 5];
+console.log(`every result: ${arr4.every((i)=> i>=0)}`);
+
+//----------------------SOME---------------------------
+/**
+ * The some method works with arrays to check if any element passes a particular test. It returns a Boolean value - true if any of the values meet the criteria, false if not.
+ */
+ console.log(`some result: ${arr4.some((i)=> i>=0)}`);
+
+//----------------------CURRYING---------------------------
+function add3(x) {
+  return (y)=>{    
+    return (z)=>{
+      return x+y+z;
+    }
+  }  
+}
+
+console.log(add3(10)(20)(30));
+
+
+
+
