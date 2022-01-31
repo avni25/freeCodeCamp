@@ -6,6 +6,35 @@ function sumAll(arr) {
         sum += i;
     }
     return sum;
-  }
-  
-  console.log(sumAll([1, 4]));
+}  
+console.log(sumAll([1, 4]));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
