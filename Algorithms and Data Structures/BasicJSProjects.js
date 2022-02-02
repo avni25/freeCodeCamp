@@ -26,3 +26,17 @@ function rot13(str) {
 }
   
 console.log(rot13("SERR PBQR PNZC"));
+
+
+function convertToRoman(num) {
+    let arr1 = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X"];
+    let arr2 = ["L", "C", "D", "M"];
+
+    
+
+    return num;
+}
+   
+console.log(convertToRoman(36));
+
+
