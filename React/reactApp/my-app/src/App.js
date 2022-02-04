@@ -3,6 +3,9 @@ import './App.css';
 import PropTypes from 'prop-types';
 import React from "react";
 
+
+let MYNUM = 10;
+
 function App() {
   
   return (
@@ -20,6 +23,7 @@ function App() {
         <ShoppingList/>
         <Counter/>
         <ControlledInput />
+        <MyForm />
         <div id="mydiv"></div>
         <a
           className="App-link"
@@ -100,15 +104,18 @@ class Counter extends React.Component{
   constructor(props){
     super(props);
     this.state={
-      count: 0
+      count: 0,
+      q:500
     }
 
     this.increment = this.increment.bind(this);
     this.decrement = this.decrement.bind(this);
     this.reset = this.reset.bind(this);
+    this.componentDidMount = this.componentDidMount.bind(this);
   }
 
   increment(){
+    MYNUM++;
     this.setState((s)=>({
       count: s.count+1
     }));
@@ -128,6 +135,14 @@ class Counter extends React.Component{
     }));
   }
 
+  componentDidMount() {
+    setTimeout(() => {
+      this.setState(s=> ({
+        q: s.q+10
+      }));
+    }, 1000);
+  }
+
   render(){
     return(
       <div>
@@ -135,6 +150,8 @@ class Counter extends React.Component{
         <button className='dec' onClick={this.decrement} >Dec</button>
         <button className='res' onClick = {this.reset}>Reset</button>
         <h1>{this.state.count}</h1>
+        <h2>Global variabla: {MYNUM}</h2>
+        <h1>componentDidMount: {this.state.q}</h1>
       </div>
     );
   }
@@ -153,6 +170,7 @@ class ControlledInput extends React.Component{
   }
 
   handleChange(event){
+    console.log(event);
     this.setState({
       input: event.target.value
     });
@@ -171,7 +189,44 @@ class ControlledInput extends React.Component{
 
 
 
+class MyForm extends React.Component{
+  constructor(props){
+      super(props);
+      this.state = {
+          input:"",
+          state: ""
+      }
+      
+      this.handleChange = this.handleChange.bind(this);
+      this.handleSubmit = this.handleSubmit.bind(this);
+  }
 
+  handleChange(event){
+      this.setState({
+          input: event.target.value
+      });
+  }
+
+  handleSubmit(event){
+      this.setState({
+          state: this.state.input
+      })
+  }
+
+  render(){
+      return(
+          <div>
+              <form onSubmit={this.handleSubmit}> 
+                  <input value={this.state.input} onChange={this.handleChange} />
+                  <button type="submit" >Submit</button>
+              </form>
+              <h1>{this.state.input}</h1>
+          </div>
+      )
+  }
+
+
+}
 
 
 
