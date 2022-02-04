@@ -6,6 +6,19 @@ import React from "react";
 
 let MYNUM = 10;
 
+const styleCounter = {
+  backgroundColor: 'red',
+  color: 'white',
+  font: 'inherit',
+  border: '1px solid blue',
+};
+const styleToggleDisplay ={
+  backgroundColor: 'blue',
+  color: 'white',
+  font: 'inherit',
+  border: '1px solid blue',
+}
+
 function App() {
   
   return (
@@ -24,6 +37,7 @@ function App() {
         <Counter/>
         <ControlledInput />
         <MyForm />
+        <ToggleDisplay />
         <div id="mydiv"></div>
         <a
           className="App-link"
@@ -113,7 +127,7 @@ class Counter extends React.Component{
     this.reset = this.reset.bind(this);
     this.componentDidMount = this.componentDidMount.bind(this);
   }
-
+  
   increment(){
     MYNUM++;
     this.setState((s)=>({
@@ -134,7 +148,10 @@ class Counter extends React.Component{
       count: 0
     }));
   }
-
+  shouldComponentUpdate(nextProps, nextState){
+    // it shows the count value until it reaches 10. after 10 it doesnt update.
+    return nextState.count >= 10 ? false:true;
+  }
   componentDidMount() {
     setTimeout(() => {
       this.setState(s=> ({
@@ -142,10 +159,10 @@ class Counter extends React.Component{
       }));
     }, 1000);
   }
-
+    
   render(){
     return(
-      <div>
+      <div style={styleCounter}>
         <button className='inc' onClick={this.increment}>Inc</button>
         <button className='dec' onClick={this.decrement} >Dec</button>
         <button className='res' onClick = {this.reset}>Reset</button>
@@ -227,6 +244,43 @@ class MyForm extends React.Component{
 
 
 }
+
+
+class ToggleDisplay extends React.Component{
+  constructor(props){
+    super(props);
+    this.state={
+      display:true
+    }
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleChange(){
+    this.setState(s=>({
+      display: !s.display
+    }));
+  }
+
+  render(){
+    if(this.state.display){
+      return(
+        <div style={styleToggleDisplay}>
+          <button onClick={this.handleChange}>Hide</button>
+          <h1>hide me</h1>
+        </div>
+      )
+    }else{
+      return(
+        <div style={styleToggleDisplay}>
+          <button onClick={this.handleChange}>Hide</button>
+        </div>
+      )
+    }
+  }
+
+}
+
+
 
 
 
