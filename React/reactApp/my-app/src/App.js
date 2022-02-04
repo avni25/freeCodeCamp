@@ -261,22 +261,14 @@ class ToggleDisplay extends React.Component{
     }));
   }
 
-  render(){
-    if(this.state.display){
+  render(){    
       return(
         <div style={styleToggleDisplay}>
           <button onClick={this.handleChange}>Hide</button>
-          <h1>hide me</h1>
+          {this.state.display && <h1>hide me</h1>}
         </div>
       )
-    }else{
-      return(
-        <div style={styleToggleDisplay}>
-          <button onClick={this.handleChange}>Hide</button>
-        </div>
-      )
-    }
-  }
+  }    
 
 }
 
